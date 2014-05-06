@@ -1,0 +1,9 @@
+1.  Print all lines containing integer literals in the files *.cpp in the current directory
+	
+	grep -E "[0-9]+" *.cpp
+
+2.  Print all calls to `<<` to cout in the files *.h and *.cpp (in the current directory?)
+
+	grep -E "<<" *.cpp *.h
+
+3.  

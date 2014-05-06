@@ -1,0 +1,139 @@
+Script started on Sun May  4 23:47:19 2014
+[?1034hbash-3.2$ tar xfv HW4.zip
+x Commands
+x handleSignals.cc
+x Makefile
+x myShell.cc
+x newFile
+x String.cpp
+x String.h
+x testLinkedString.cpp
+bash-3.2$ ls
+Commands		Makefile		handleSignals.cc	testLinkedString.cpp
+HW4.zip			String.cpp		myShell.cc
+HW4Log			String.h		newFile
+bash-3.2$ make 
+g++ -c String.cpp -w
+g++ String.o testLinkedString.cpp -o testLinkedString -w
+g++ handleSignals.cc -o handle_signals -w
+g++ myShell.cc -o my_shell -w
+bash-3.2$ ls
+Commands		String.cpp		handle_signals		testLinkedString
+HW4.zip			String.h		myShell.cc		testLinkedString.cpp
+HW4Log			String.o		my_shell
+Makefile		handleSignals.cc	newFile
+bash-3.2$ ./testLinkedString
+Input a string: hey what does this do?
+Here is your string: hey what does this do?
+Now input another one: is this a good idea
+Here is your second string: is this a good idea
+Now we will temporarily add them together (demonstrating the + operator): hey what does this do?is this a good idea
+Now I'm going to permanently modify the second string by concatenating (+=) the first one to the end of it...
+Here is string 't': is this a good ideahey what does this do? ... and here is the unchanged string 's': hey what does this do?
+Now I've made a copy of that string (demonstrating the String copy constructor)... Here it is: is this a good ideahey what does this do?
+We will now refer to this copied string as 'u'
+
+I will now modify and compare (using the boolean operators) these two strings.
+Here is 't' now: cat
+And here is 'u' now: catz
+Example of == Operator - 't' should not be equal to 'u' : 0
+Now 't' is also equal to 'catz' (using the = assignment operator).
+Example of == Operator - 't' and 'u' should be equal now: 1
+
+Now we will make 't' become 'warmachine' and 'u' become 'mach'.
+What is the index of the letter r in 't' (warmachine)? It should be 2... : 2
+Here is an example of the [] operator - the char at index 2 in 't' should be the letter r: r
+What is the index of the letter h in 'u' (mach)?  It should be 3... : 3
+What is the index of the letter z in 't' (warmachine)?  It should return -1 because there is none: -1
+What is the index of null character in 'u' (mach)?  It should return -1 because there is none: -1
+How many letters are there in 'warmachine' (t) ? It should be 10! : 10
+
+Last but not least, let's intialize an empty string.
+Here is x, the empty string: 
+x has a length of : 0
+If we try to find the index of the letter 'a' in the string 'x' it should return -1 because it is an empty string!: -1
+If we add the 'hippo' to x, it becomes... : hippo and it has a length of 5
+Here is x.indexOf(128) - it should return -1 since there is no Ç in it: -1
+That's it!
+bash-3.2$ ./handle_signals
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX^\QXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX^CIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX^ZS
+[1]+  Stopped                 ./handle_signals
+bash-3.2$ fg
+./handle_signals
+XXXXXXXXXXXXXXXXXXXXXXXXXXX^\QXXXXXXXXXXXXXXXXXXXXXXXXX^CIXXXXXXXXXXXXXXXXXXXXXXX^\QXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX^CIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX^ZS
+[1]+  Stopped                 ./handle_signals
+bash-3.2$ fg
+./handle_signals
+XXXXXXXXXXXXXXXXXXXXXXXXXXXX^\QXXXXXXXXXXXXXXXXXXXXXXX^CIXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX^ZS
+Interrupt: 4
+Quit: 4
+Stop: 3
+bash-3.2$ ./my_shell
+
+% ls
+Commands		String.cpp		handle_signals		testLinkedString
+HW4.zip			String.h		myShell.cc		testLinkedString.cpp
+HW4Log			String.o		my_shell
+Makefile		handleSignals.cc	newFile
+
+% ls -l
+total 264
+-rwxr-xr-x  1 ericwalsh  staff    240 May  4 23:40 Commands
+-rw-r--r--  1 ericwalsh  staff   5111 May  4 23:47 HW4.zip
+-rw-r--r--  1 ericwalsh  staff   3584 May  4 23:48 HW4Log
+-rwxr-xr-x  1 ericwalsh  staff    489 May  4 18:24 Makefile
+-rwxr-xr-x  1 ericwalsh  staff   4487 May  4 17:29 String.cpp
+-rwxr-xr-x  1 ericwalsh  staff   1161 May  4 12:57 String.h
+-rw-r--r--  1 ericwalsh  staff  17472 May  4 23:47 String.o
+-rwxr-xr-x  1 ericwalsh  staff   1593 May  4 23:46 handleSignals.cc
+-rwxr-xr-x  1 ericwalsh  staff  15752 May  4 23:47 handle_signals
+-rwxr-xr-x  1 ericwalsh  staff    693 May  4 23:29 myShell.cc
+-rwxr-xr-x  1 ericwalsh  staff  15496 May  4 23:47 my_shell
+-rwxr-xr-x  1 ericwalsh  staff     52 May  4 23:31 newFile
+-rwxr-xr-x  1 ericwalsh  staff  30276 May  4 23:47 testLinkedString
+-rwxr-xr-x  1 ericwalsh  staff   2921 May  4 13:46 testLinkedString.cpp
+
+% cat newFile
+THIS IS A NEW FILE TO BE USED FOR MY_SHELL TESTING!!
+% tee newOutput < newFile
+THIS IS A NEW FILE TO BE USED FOR MY_SHELL TESTING!!
+% ls
+Commands		String.cpp		handle_signals		newOutput
+HW4.zip			String.h		myShell.cc		testLinkedString
+HW4Log			String.o		my_shell		testLinkedString.cpp
+Makefile		handleSignals.cc	newFile
+
+% cat newOutput
+THIS IS A NEW FILE TO BE USED FOR MY_SHELL TESTING!!
+% tee newerOutput < newOutput > newerOutput
+
+% ls
+Commands		String.cpp		handle_signals		newOutput
+HW4.zip			String.h		myShell.cc		newerOutput
+HW4Log			String.o		my_shell		testLinkedString
+Makefile		handleSignals.cc	newFile			testLinkedString.cpp
+
+% cat newerOutput
+THIS IS A NEW FILE TO BE USED FOR MY_SHELL TESTING!!
+% tee newestFile
+hey this is super cool
+hey this is super cool
+and now i'm done
+and now i'm done
+^D
+% ls
+Commands		String.h		my_shell		testLinkedString
+HW4.zip			String.o		newFile			testLinkedString.cpp
+HW4Log			handleSignals.cc	newOutput
+Makefile		handle_signals		newerOutput
+String.cpp		myShell.cc		newestFile
+
+% cat newestFile
+hey this is super cool
+and now i'm done
+
+% exit
+bash-3.2$ exit
+exit
+
+Script done on Sun May  4 23:50:55 2014

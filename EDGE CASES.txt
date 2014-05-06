@@ -1,0 +1,13 @@
+EDGE CASES
+
+String:
+	-null string
+	-strings larger than max allocated size (in my case 2048 bytes)
+	-strings w/ extremely large namesize (not just filesize)
+	-strings containing weird/special characters
+	-strings containing spaces
+	-strings containing carriage returns/newlines
+
+my_shell:
+	-handling pipe inputs
+	-multiple line inputs
